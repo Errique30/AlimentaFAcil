@@ -1,0 +1,122 @@
+@startuml
+abstract class Persona {
+    -nombre: String
+    -edad: int
+    -rol: String
+    +trabajar(): void
+}
+
+class GerenteDeTienda {
+    -presupuesto: double
+    -inventario: String
+    +gestionarPersonal(): void
+    +coordinarProveedores(): void
+    +supervisarMarketing(): void
+    +trabajar(): void
+}
+
+class ChefEjecutivo {
+    -recetas: List<String>
+    +crearRecetas(): void
+    +supervisarPreparacion(): void
+    +trabajar(): void
+}
+
+class EquipoAtencionCliente {
+    -clientesAtendidos: int
+    +atenderClientes(): void
+    +gestionarPedidos(): void
+    +asegurarExperienciaPositiva(): void
+    +trabajar(): void
+}
+
+class PersonalAlmacen {
+    -inventariosRealizados: int
+    +recibirAlimentos(): void
+    +realizarInventario(): void
+    +prepararPedidos(): void
+    +trabajar(): void
+}
+
+class Cliente {
+    -direccion: String
+    -pedidos: List<Pedido>
+    +realizarPedido(pedido: Pedido): void
+    +cancelarPedido(pedido: Pedido): void
+}
+
+class Proveedor {
+    -productosSuministrados: List<Producto>
+    +suministrarProducto(producto: Producto): void
+    +retirarProducto(producto: Producto): void
+}
+
+class Producto {
+    -nombre: String
+    -tipo: String
+    -precio: double
+    -stock: int
+    +getNombre(): String
+    +getTipo(): String
+    +getPrecio(): double
+    +getStock(): int
+    +setNombre(nombre: String): void
+    +setTipo(tipo: String): void
+    +setPrecio(precio: double): void
+    +setStock(stock: int): void
+}
+
+class Receta {
+    -id: int
+    -nombre: String
+    -productos: List<Producto>
+}
+
+class Pedido {
+    -id: int
+    -fecha: Date
+    -productos: List<Producto>
+    +agregarProducto(producto: Producto): void
+    +eliminarProducto(producto: Producto): void
+    +calcularTotal(): double
+}
+
+class Suministro {
+    -fechaEntrega: Date
+    -productos: List<Producto>
+}
+
+class Tienda {
+    -nombre: String
+    -direccion: String
+    -gerente: GerenteDeTienda
+    -chefs: List<ChefEjecutivo>
+    -equipoAtencion: List<EquipoAtencionCliente>
+    -personalAlmacen: List<PersonalAlmacen>
+    -productos: List<Producto>
+    +abrirTienda(): void
+    +cerrarTienda(): void
+    +agregarProducto(producto: Producto): void
+    +eliminarProducto(producto: Producto): void
+}
+
+Persona <|-- GerenteDeTienda
+Persona <|-- ChefEjecutivo
+Persona <|-- EquipoAtencionCliente
+Persona <|-- PersonalAlmacen
+Persona <|-- Cliente
+Persona <|-- Proveedor
+
+Cliente "1" -- "0..*" Pedido
+Proveedor "1" -- "0..*" Suministro
+Suministro "0..*" -- "1..*" Producto
+Pedido "0..*" -- "1..*" Producto
+GerenteDeTienda "1" -right- "1" Tienda
+ChefEjecutivo "0..*" -right- "1" Tienda
+EquipoAtencionCliente "0..*" -right- "1" Tienda
+PersonalAlmacen "0..*" -right- "1" Tienda
+Producto "0..*" -left- "1" Tienda
+Receta "0..*" -- "1..*" Producto
+ChefEjecutivo "1" -- "0..*" Receta
+
+@enduml

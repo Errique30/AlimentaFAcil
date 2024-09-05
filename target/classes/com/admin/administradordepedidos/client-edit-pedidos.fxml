@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.administradordepedidos.ClientEditPedidosController">
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="866.0">
+         <children>
+            <Label prefHeight="42.0" prefWidth="462.0" text="Lista de Productos del carrito " textFill="#545454">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="39.0" fitWidth="52.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.7;">
+               <image>
+                  <Image url="@Images/iconos/home.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="200.0" right="30.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <ScrollPane fx:id="scroll" prefHeight="623.0" prefWidth="866.0" styleClass="transparent" stylesheets="@Styles/styles.css">
+         <content>
+            <GridPane fx:id="grid" alignment="CENTER_RIGHT" prefHeight="162.0" prefWidth="324.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>
